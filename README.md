@@ -3,7 +3,7 @@ An example of how OpenMP scheduling works
 
 # Requires:
 - Python 2.7
-- PyQT
+- PyQT4
 - Numpy
 - Fortran compiler
 
