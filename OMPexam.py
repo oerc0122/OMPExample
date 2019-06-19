@@ -1,12 +1,12 @@
 
-from PyQt4 import QtCore, QtGui, uic
+from PyQt5 import QtCore, QtWidgets, QtGui, uic
 from omp_fort import omp_fort
 import os
 
 window_file = uic.loadUiType("./GUI/OMPWind.ui")[0]
-class Window(QtGui.QMainWindow, window_file):
+class Window(QtWidgets.QMainWindow, window_file):
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.centre()
         self.log = Log(self)
@@ -100,7 +100,7 @@ class Window(QtGui.QMainWindow, window_file):
     def initGraphics(self):
         # Set up initial data
         self.GV=self.graphicsView
-        self.GV.scene = QtGui.QGraphicsScene(self)
+        self.GV.scene = QtWidgets.QGraphicsScene(self)
         self.GV.setScene(self.GV.scene)
         self.Gwidth = self.GV.width()
         self.Gheight = self.GV.height()
@@ -130,7 +130,7 @@ class Window(QtGui.QMainWindow, window_file):
     #Moves window to centre of screen
     def centre(self):
         frameGm = self.frameGeometry()
-        frameGm.moveCenter(QtGui.QApplication.desktop().screenGeometry(QtGui.QApplication.desktop().screenNumber(QtGui.QApplication.desktop().cursor().pos())).center())
+        frameGm.moveCenter(QtWidgets.QApplication.desktop().screenGeometry(QtWidgets.QApplication.desktop().screenNumber(QtWidgets.QApplication.desktop().cursor().pos())).center())
         self.move(frameGm.topLeft())
 
      #When this window closes
@@ -138,9 +138,9 @@ class Window(QtGui.QMainWindow, window_file):
         os._exit(1)
 
 log_file = uic.loadUiType("./GUI/RunLog.ui")[0]
-class Log(QtGui.QMainWindow, log_file):
+class Log(QtWidgets.QMainWindow, log_file):
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.centre()
         self.clearButton.clicked.connect(self.clear)
@@ -150,7 +150,7 @@ class Log(QtGui.QMainWindow, log_file):
 
     def centre(self):
         frameGm = self.frameGeometry()
-        frameGm.moveCenter(QtGui.QApplication.desktop().screenGeometry(QtGui.QApplication.desktop().screenNumber(QtGui.QApplication.desktop().cursor().pos())).center())
+        frameGm.moveCenter(QtWidgets.QApplication.desktop().screenGeometry(QtWidgets.QApplication.desktop().screenNumber(QtWidgets.QApplication.desktop().cursor().pos())).center())
         self.move(frameGm.topRight())
 
     def closeEvent(self, event):
@@ -162,7 +162,7 @@ class FortThread(QtCore.QRunnable):
         
 #Initialise the GUI thread
 QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_X11InitThreads)
-app = QtGui.QApplication([])
+app = QtWidgets.QApplication([])
 
 #Show the startup window
 window = Window(None)
