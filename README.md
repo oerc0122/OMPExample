@@ -2,8 +2,8 @@
 An example of how OpenMP scheduling works
 
 # Requires:
-- Python 2.7
-- PyQT4
+- Python 2.7+, 3.0+
+- PyQT5
 - Numpy
 - Fortran compiler
 
